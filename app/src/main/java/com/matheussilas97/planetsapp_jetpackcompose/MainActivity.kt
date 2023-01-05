@@ -40,11 +40,11 @@ class MainActivity : ComponentActivity() {
         val navController = rememberNavController()
 
         NavHost(navController = navController, startDestination = "homeScreen") {
-            composable("homeScreen") {
+            composable(route = "homeScreen") {
                 HomeScreen(navController = navController, planets = PlanetsSource.solarSystemList())
             }
             composable(
-                "detailsScreen/{name}/{description}/{image}",
+                route = "detailsScreen/{name}/{description}/{image}",
                 arguments = listOf(navArgument("name") { type = NavType.StringType },
                     navArgument("description") { type = NavType.StringType },
                     navArgument("image") { type = NavType.IntType })
@@ -61,9 +61,7 @@ class MainActivity : ComponentActivity() {
                     Planets(name = planetName, description = planetDescription, image = planetImage)
 
                 DetailsScreen(navController = navController, planet = planet)
-
             }
-
         }
     }
 }
